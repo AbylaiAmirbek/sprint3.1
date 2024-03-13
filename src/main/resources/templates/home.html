@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:insert="~{header}">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body class="col col-6 mx-auto">
+
+<div th:insert="~{navbar}"></div>
+<table class="table table-striped">
+    <thead>
+    <th>ID</th>
+    <th>NAME</th>
+    <th>SURNAME</th>
+    <th>EXAM</th>
+    <th>MARK</th>
+    </thead>
+    <tbody>
+    <tr th:each="developer: ${razraby}" >
+        <td th:text="${developer.id}" th:if="${developer.exam<50}" style="color: red;" ></td>
+        <td th:text = "${developer.fullName}" th:if="${developer.exam<50}" style="color: red;"></td>
+        <td th:text = "${developer.fullSurname}" th:if="${developer.exam<50}" style="color: red;"></td>
+        <td th:text = "${developer.exam}" th:if="${developer.exam<50}" style="color: red;"></td>
+        <td th:if = "${developer.exam < 50}" style="color: red;">F</td>
+
+        <td th:text="${developer.id}" th:unless="${developer.exam<50}" ></td>
+        <td th:text = "${developer.fullName}" th:unless="${developer.exam<50}" ></td>
+        <td th:text = "${developer.fullSurname}" th:unless="${developer.exam<50}"></td>
+        <td th:text = "${developer.exam}" th:unless="${developer.exam<50}"></td>
+
+
+        <td th:if = "${developer.exam >= 90}">A</td>
+        <td th:if = "${developer.exam >= 75 && developer.exam<=89}">B</td>
+        <td th:if = "${developer.exam >= 60 && developer.exam<=74}">C</td>
+        <td th:if = "${developer.exam >= 50 && developer.exam<=59}">D</td>
+
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
